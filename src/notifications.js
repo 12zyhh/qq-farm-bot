@@ -8,9 +8,18 @@ const { toNum, log } = require('./utils');
 const MAX_NOTIFICATIONS = 100;
 
 let notifications = [];
+let notificationsEnabled = true;
 
 let lastGold = 0;
 let lastExp = 0;
+
+function setNotificationsEnabled(enabled) {
+  notificationsEnabled = enabled;
+}
+
+function isNotificationsEnabled() {
+  return notificationsEnabled;
+}
 
 function formatTimestamp(timestamp) {
   if (!timestamp) return new Date().toISOString();
@@ -19,6 +28,8 @@ function formatTimestamp(timestamp) {
 }
 
 function addNotification(notification) {
+  if (!notificationsEnabled) return;
+  
   notification.id = Date.now() + Math.random();
   notification.timestamp = formatTimestamp(notification.timestamp || Date.now());
   notification.read = false;
@@ -237,6 +248,8 @@ module.exports = {
   markAllAsRead,
   clearNotifications,
   getUnreadCount,
+  setNotificationsEnabled,
+  isNotificationsEnabled,
   initNotificationSystem,
   cleanupNotificationSystem,
 };

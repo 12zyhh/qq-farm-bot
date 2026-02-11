@@ -32,6 +32,7 @@ const DEFAULT_CONFIG = {
     autoPutBadThings: false, // 无效！！！开启后会多次访问朋友导致被拉黑 请勿更改暂时关闭放虫放草功能
     autoBuyFertilizer: false,
     autoUnlockLand: true,
+    enableNotifications: false, // 是否启用通知系统
   },
   accounts: [],
   dailyStats: {

@@ -18,7 +18,13 @@
         </div>
       </div>
 
-      <div v-if="loading" class="empty-state">
+      <div v-if="isNotificationsDisabled" class="disabled-state">
+        <el-icon class="disabled-icon"><WarningFilled /></el-icon>
+        <span class="disabled-text">通知功能已关闭</span>
+        <span class="disabled-hint">请在首页功能开关中启用"消息通知"</span>
+      </div>
+
+      <div v-else-if="loading" class="empty-state">
         <el-icon class="loading-icon"><Loading /></el-icon>
         <span>加载中...</span>
       </div>
@@ -73,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 import { 
   Bell, 
@@ -89,12 +95,16 @@ import {
   User,
   SuccessFilled,
   CircleCheck,
-  Unlock
+  Unlock,
+  WarningFilled
 } from '@element-plus/icons-vue'
 
 const loading = ref(false)
 const notifications = ref<any[]>([])
 const unreadCount = ref(0)
+const notificationsEnabled = ref(true)
+
+const isNotificationsDisabled = computed(() => !notificationsEnabled.value)
 
 function getNotificationIcon(type: string) {
   const iconMap: Record<string, any> = {
@@ -134,12 +144,20 @@ async function loadNotifications() {
 
   loading.value = true
   try {
-    const result = await window.electronAPI.invoke('notifications:get')
-    if (result.success) {
-      notifications.value = result.notifications || []
-      unreadCount.value = result.unreadCount || 0
+    const [notificationsResult, configResult] = await Promise.all([
+      window.electronAPI.invoke('notifications:get'),
+      window.electronAPI.invoke('bot:get-config')
+    ])
+    
+    if (configResult.success && configResult.config) {
+      notificationsEnabled.value = configResult.config.features?.enableNotifications !== false
+    }
+    
+    if (notificationsResult.success) {
+      notifications.value = notificationsResult.notifications || []
+      unreadCount.value = notificationsResult.unreadCount || 0
     } else {
-      ElMessage.error(result.error || '获取通知失败')
+      ElMessage.error(notificationsResult.error || '获取通知失败')
     }
   } catch (e) {
     ElMessage.error('获取通知失败')
@@ -251,6 +269,31 @@ onUnmounted(() => {
   align-items: center;
   gap: 12px;
   padding: 40px 20px;
+  color: var(--color-text-secondary);
+}
+
+.disabled-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 20px;
+  color: var(--color-text-secondary);
+}
+
+.disabled-icon {
+  font-size: 48px;
+  color: #e6a23c;
+}
+
+.disabled-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.disabled-hint {
+  font-size: 14px;
   color: var(--color-text-secondary);
 }
 

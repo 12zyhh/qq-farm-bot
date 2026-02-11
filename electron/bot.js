@@ -13,7 +13,7 @@ const { connect, cleanup, resetState, getWs, getUserState, networkEvents } = req
 const { startFarmCheckLoop, stopFarmCheckLoop, setOverrideSeedId, setPlantStrategy, getShopCache, clearShopCache, ensureShopCache, getLandsDetail, checkUnlockableLands, getCurrentPhase } = require('../src/farm');
 const { startFriendCheckLoop, stopFriendCheckLoop, setFriendFeatures, getAllFriends, enterFriendFarm, leaveFriendFarm, helpWater, helpWeed, helpInsecticide, stealHarvest, getOperationLimits, getRemainingTimes, canGetExp } = require('../src/friend');
 const { initTaskSystem, cleanupTaskSystem, getTaskInfo, claimTaskReward, batchClaimTaskReward } = require('../src/task');
-const { initNotificationSystem, cleanupNotificationSystem, getNotifications, markAsRead, markAllAsRead, clearNotifications, getUnreadCount } = require('../src/notifications');
+const { initNotificationSystem, cleanupNotificationSystem, getNotifications, markAsRead, markAllAsRead, clearNotifications, getUnreadCount, setNotificationsEnabled } = require('../src/notifications');
 const { initStatusBar, cleanupStatusBar, setStatusPlatform, statusData, setElectronMode } = require('../src/status');
 const { startSellLoop, stopSellLoop } = require('../src/warehouse');
 const { processInviteCodes } = require('../src/invite');
@@ -222,6 +222,7 @@ function botConnect(code, platform) {
       if (features.autoTask !== false) {
         initTaskSystem();
       }
+      setNotificationsEnabled(features.enableNotifications !== false);
       initNotificationSystem();
       if (features.autoSell !== false) {
         const sellInterval = (config.sellInterval || 60) * 1000;
@@ -337,6 +338,10 @@ function setFeatureEnabled(feature, enabled) {
     if (feature === 'autoTask') {
       if (enabled) initTaskSystem();
       else cleanupTaskSystem();
+    }
+
+    if (feature === 'enableNotifications') {
+      setNotificationsEnabled(enabled);
     }
   }
 

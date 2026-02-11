@@ -382,6 +382,11 @@ const systemFeatures = [
     label: "检测解锁",
     desc: "升级时检测并提示可解锁的土地",
   },
+  {
+    key: "enableNotifications",
+    label: "消息通知",
+    desc: "启用系统通知（升级、任务完成、好友申请等）",
+  },
 ];
 
 async function handleConnect() {
