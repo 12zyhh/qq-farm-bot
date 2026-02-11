@@ -1,0 +1,279 @@
+:root {
+  --bg-primary: #f5f7fa;
+  --bg-sidebar: #ffffff;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --bg-secondary: #ffffff;
+  --color-accent: #409eff;
+  --color-text: #303133;
+  --color-text-secondary: #909399;
+  --color-text-primary: #303133;
+  --color-success: #67c23a;
+  --color-warning: #e6a23c;
+  --color-danger: #f56c6c;
+  --color-border: #dcdfe6;
+}
+
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  color: var(--color-text);
+  font-family: 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  user-select: none;
+}
+
+/* Element Plus light overrides */
+.el-switch__core {
+  background-color: #dcdfe6 !important;
+}
+
+.el-switch.is-checked .el-switch__core {
+  background-color: var(--color-accent) !important;
+}
+
+/* Element Plus table overrides for light theme */
+.el-table {
+  --el-table-bg-color: var(--bg-card);
+  --el-table-tr-bg-color: var(--bg-card);
+  --el-table-header-bg-color: #f5f7fa;
+  --el-table-row-hover-bg-color: #f5f7fa;
+  --el-table-text-color: var(--color-text);
+  --el-table-header-text-color: var(--color-text-secondary);
+  --el-table-border-color: var(--color-border);
+}
+
+/* Element Plus input overrides for light theme */
+.el-input__wrapper {
+  background-color: var(--bg-input) !important;
+  box-shadow: 0 0 0 1px var(--color-border) inset !important;
+}
+
+.el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px var(--color-accent) inset !important;
+}
+
+.el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 1px var(--color-accent) inset !important;
+}
+
+/* Element Plus radio overrides for light theme */
+.el-radio__input.is-checked .el-radio__inner {
+  background-color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+}
+
+/* Element Plus button overrides for light theme */
+.el-button--primary {
+  background-color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+}
+
+/* Card borders for light theme */
+.card,
+.section,
+.log-list {
+  border: 1px solid var(--color-border);
+}
+
+/* Account item hover for light theme */
+.account-item {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.account-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Stats item for light theme */
+.stat-item {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Friend card for light theme */
+.friend-card {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.friend-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(64, 158, 255, 0.1);
+}
+
+.avatar-placeholder {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Limits view for light theme */
+.limit-card {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.limit-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(64, 158, 255, 0.1);
+}
+
+.limit-icon {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.exp-status {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Tasks view for light theme */
+.task-card,
+.active-card {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.task-card:hover,
+.active-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(64, 158, 255, 0.1);
+}
+
+.reward-item {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.batch-actions {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Task dialog for light theme */
+.el-dialog {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.el-dialog__header {
+  background: rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.el-dialog__title {
+  color: #303133;
+}
+
+.el-dialog__body {
+  background: #ffffff;
+  color: #303133;
+}
+
+.el-dialog__footer {
+  background: rgba(0, 0, 0, 0.02);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.task-detail .detail-label {
+  color: #909399;
+}
+
+.task-detail .detail-value {
+  color: #303133;
+}
+
+.task-detail .progress-current {
+  color: #409eff;
+}
+
+.task-detail .progress-separator,
+.task-detail .progress-total {
+  color: #909399;
+}
+
+.task-detail .reward-card {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.task-detail .reward-icon {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.task-detail .reward-name {
+  color: #303133;
+}
+
+.task-detail .reward-count {
+  color: #409eff;
+}
+
+.task-detail .share-info {
+  background: rgba(64, 158, 255, 0.1);
+  border-color: rgba(64, 158, 255, 0.2);
+}
+
+.task-detail .share-text {
+  color: #303133;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c4cc;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8abb2;
+}
+
+/* Title bar drag area */
+.titlebar {
+  -webkit-app-region: drag;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  background-color: var(--bg-sidebar);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.titlebar-buttons {
+  -webkit-app-region: no-drag;
+  display: flex;
+  gap: 4px;
+}
+
+.titlebar-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titlebar-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-text);
+}
+
+.titlebar-btn.close:hover {
+  background: var(--color-danger);
+  color: white;
+}

@@ -1,0 +1,32 @@
+
+.DS_Store
+node_modules
+.package-lock.json
+game.js
+/game
+*.bin
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Claude Code
+.claude/
+
+# Build output
+dist/
+release/
+
+# Windows
+nul
+Thumbs.db
+
+# Env
+.env
+.env.*
+
+# Internal docs
+TODO.md
+RELEASE_GUIDE.md

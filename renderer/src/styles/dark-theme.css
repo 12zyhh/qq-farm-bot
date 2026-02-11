@@ -1,0 +1,219 @@
+:root {
+  --bg-primary: #1a1a2e;
+  --bg-sidebar: #16213e;
+  --bg-card: #0f3460;
+  --bg-input: #1a2744;
+  --color-accent: #e94560;
+  --color-text: #eeeeee;
+  --color-text-secondary: #a0a0a0;
+  --color-success: #67c23a;
+  --color-warning: #e6a23c;
+  --color-danger: #f56c6c;
+  --color-border: #2a3a5e;
+}
+
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  color: var(--color-text);
+  font-family: 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  user-select: none;
+}
+
+/* Element Plus dark overrides */
+.el-switch__core {
+  background-color: #4a4a5a !important;
+}
+
+.el-switch.is-checked .el-switch__core {
+  background-color: var(--color-accent) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a3a5a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a5a7a;
+}
+
+/* Title bar drag area */
+.titlebar {
+  -webkit-app-region: drag;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  background-color: var(--bg-sidebar);
+}
+
+.titlebar-buttons {
+  -webkit-app-region: no-drag;
+  display: flex;
+  gap: 4px;
+}
+
+.titlebar-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titlebar-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+}
+
+.titlebar-btn.close:hover {
+  background: var(--color-danger);
+  color: white;
+}
+
+/* Friend card for dark theme */
+.friend-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.friend-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(64, 158, 255, 0.2);
+}
+
+.avatar-placeholder {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Limits view for dark theme */
+.limit-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.limit-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(64, 158, 255, 0.2);
+}
+
+.limit-icon {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.exp-status {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Tasks view for dark theme */
+.task-card,
+.active-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.task-card:hover,
+.active-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(64, 158, 255, 0.2);
+}
+
+.reward-item {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.batch-actions {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Task dialog for dark theme */
+.el-dialog {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.el-dialog__header {
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.el-dialog__title {
+  color: #ffffff;
+}
+
+.el-dialog__body {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.el-dialog__footer {
+  background: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.task-detail .detail-label {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.task-detail .detail-value {
+  color: #ffffff;
+}
+
+.task-detail .progress-current {
+  color: #409eff;
+}
+
+.task-detail .progress-separator,
+.task-detail .progress-total {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.task-detail .reward-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.task-detail .reward-icon {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.task-detail .reward-name {
+  color: #ffffff;
+}
+
+.task-detail .reward-count {
+  color: #409eff;
+}
+
+.task-detail .share-info {
+  background: rgba(64, 158, 255, 0.15);
+  border-color: rgba(64, 158, 255, 0.3);
+}
+
+.task-detail .share-text {
+  color: #ffffff;
+}
