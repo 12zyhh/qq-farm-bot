@@ -292,6 +292,10 @@ function getStatus() {
   let expProgress = { current: 0, needed: 0 };
   if (state.level > 0) {
     expProgress = getLevelExpProgress(state.level, state.exp);
+    // 使用计算出的实际等级（避免等级更新延迟导致显示错误）
+    if (expProgress.level !== undefined && expProgress.level !== state.level) {
+      state.level = expProgress.level;
+    }
   }
 
   return {

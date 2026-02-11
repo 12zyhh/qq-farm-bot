@@ -80,13 +80,23 @@ function getLevelExpTable() {
 function getLevelExpProgress(level, totalExp) {
     if (!levelExpTable || level <= 0) return { current: 0, needed: 0 };
     
-    const currentLevelStart = levelExpTable[level] || 0;
-    const nextLevelStart = levelExpTable[level + 1] || (currentLevelStart + 100000);
+    // 根据总经验值自动计算当前等级（避免等级更新延迟导致显示错误）
+    let actualLevel = level;
+    for (let i = 1; i < levelExpTable.length; i++) {
+        if (levelExpTable[i] && totalExp >= levelExpTable[i]) {
+            actualLevel = i;
+        } else {
+            break;
+        }
+    }
+    
+    const currentLevelStart = levelExpTable[actualLevel] || 0;
+    const nextLevelStart = levelExpTable[actualLevel + 1] || (currentLevelStart + 100000);
     
     const currentExp = Math.max(0, totalExp - currentLevelStart);
     const neededExp = nextLevelStart - currentLevelStart;
     
-    return { current: currentExp, needed: neededExp };
+    return { current: currentExp, needed: neededExp, level: actualLevel };
 }
 
 // ============ 植物配置相关 ============

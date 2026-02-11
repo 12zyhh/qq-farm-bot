@@ -2,12 +2,15 @@
  * 通知系统 - 管理系统通知
  */
 
-const { networkEvents } = require('./network');
+const { networkEvents, getUserState } = require('./network');
 const { toNum, log } = require('./utils');
 
 const MAX_NOTIFICATIONS = 100;
 
 let notifications = [];
+
+let lastGold = 0;
+let lastExp = 0;
 
 function formatTimestamp(timestamp) {
   if (!timestamp) return new Date().toISOString();
@@ -60,9 +63,10 @@ function handleBasicNotify(notify) {
   const basic = notify.basic;
   if (!basic) return;
   
-  const oldLevel = global.userState?.level || 0;
-  const oldGold = global.userState?.gold || 0;
-  const oldExp = global.userState?.exp || 0;
+  const userState = getUserState();
+  const oldLevel = userState?.level || 0;
+  const oldGold = userState?.gold || 0;
+  const oldExp = userState?.exp || 0;
   
   const newLevel = toNum(basic.level);
   const newGold = toNum(basic.gold);
@@ -78,8 +82,8 @@ function handleBasicNotify(notify) {
     });
   }
   
-  if (newGold > oldGold) {
-    const diff = newGold - oldGold;
+  if (newGold > lastGold && newGold > oldGold) {
+    const diff = newGold - lastGold;
     addNotification({
       type: 'gold_gain',
       title: '金币增加',
@@ -88,9 +92,10 @@ function handleBasicNotify(notify) {
       data: { amount: diff },
     });
   }
+  lastGold = newGold;
   
-  if (newExp > oldExp) {
-    const diff = newExp - oldExp;
+  if (newExp > lastExp && newExp > oldExp) {
+    const diff = newExp - lastExp;
     addNotification({
       type: 'exp_gain',
       title: '经验增加',
@@ -99,6 +104,7 @@ function handleBasicNotify(notify) {
       data: { amount: diff },
     });
   }
+  lastExp = newExp;
 }
 
 function handleFriendApplicationReceivedNotify(notify) {

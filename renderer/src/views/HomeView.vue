@@ -319,7 +319,11 @@ const strategyTagType = computed(() => {
 const expDisplay = computed(() => {
   if (!status.connected) return "--";
   const p = status.expProgress;
-  if (p && p.needed > 0) return `${p.current}/${p.needed}`;
+  if (p && p.needed > 0) {
+    // 使用计算出的实际等级（避免等级更新延迟导致显示错误）
+    const actualLevel = p.level !== undefined ? p.level : status.level;
+    return `${p.current}/${p.needed}`;
+  }
   return String(status.exp);
 });
 

@@ -227,6 +227,7 @@ function handleNotify(msg) {
                         networkEvents.emit('stateChanged');
                     }
                 }
+                networkEvents.emit('ItemNotify', notify);
             } catch (e) { }
             return;
         }
@@ -251,6 +252,7 @@ function handleNotify(msg) {
                         log('系统', `🎉 升级! Lv${oldLevel} → Lv${userState.level}`);
                     }
                     networkEvents.emit('stateChanged');
+                    networkEvents.emit('BasicNotify', notify);
                 }
             } catch (e) { }
             return;
@@ -263,6 +265,7 @@ function handleNotify(msg) {
                 const applications = notify.applications || [];
                 if (applications.length > 0) {
                     networkEvents.emit('friendApplicationReceived', applications);
+                    networkEvents.emit('FriendApplicationReceivedNotify', notify);
                 }
             } catch (e) { }
             return;
@@ -276,6 +279,7 @@ function handleNotify(msg) {
                 if (friends.length > 0) {
                     const names = friends.map(f => f.name || f.remark || `GID:${toNum(f.gid)}`).join(', ');
                     log('好友', `新好友: ${names}`);
+                    networkEvents.emit('FriendAddedNotify', notify);
                 }
             } catch (e) { }
             return;
@@ -303,9 +307,10 @@ function handleNotify(msg) {
                     // 经验 ID=1101 (另一种经验通知ID)
                     else if (id === 1101) {
                         userState.exp = count;
-                        updateStatusExp(count);
+                        updateStatusLevel(userState.level, count);
                     }
                 }
+                networkEvents.emit('ItemNotify', notify);
             } catch (e) { }
             return;
         }
@@ -317,6 +322,7 @@ function handleNotify(msg) {
                 const goods = notify.goods_list || [];
                 if (goods.length > 0) {
                     log('商店', `解锁 ${goods.length} 个新商品!`);
+                    networkEvents.emit('GoodsUnlockNotify', notify);
                 }
             } catch (e) { }
             return;
@@ -328,6 +334,7 @@ function handleNotify(msg) {
                 const notify = types.TaskInfoNotify.decode(eventBody);
                 if (notify.task_info) {
                     networkEvents.emit('taskInfoNotify', notify.task_info);
+                    networkEvents.emit('TaskInfoNotify', notify);
                 }
             } catch (e) { }
             return;
