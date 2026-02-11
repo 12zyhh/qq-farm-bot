@@ -741,5 +741,5 @@ module.exports = {
     getAllFriends,
     checkFriends, startFriendCheckLoop, stopFriendCheckLoop,
     checkAndAcceptApplications, setFriendFeatures, enterFriendFarm, stealHarvest,helpWeed,
-    getOperationLimits, getRemainingTimes, canGetExp, helpInsecticide
+    getOperationLimits, getRemainingTimes, canGetExp, helpInsecticide, helpWater
 };
